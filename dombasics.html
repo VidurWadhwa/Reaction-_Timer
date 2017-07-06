@@ -1,0 +1,168 @@
+<html>
+
+    <head>
+    
+        <title>
+        
+            JAVASCRIPT
+        
+        </title>
+      
+        <style type="text/css">
+        
+            #origin{
+                
+                height: 120px;
+                width: 120px;
+                position: relative;
+                left: 500px;
+                top: 300px;
+                background-color: darkmagenta;
+                
+                display: none;
+                
+            }
+        
+        </style>
+        
+    </head>
+    
+    
+    <body>
+        
+        <h1>Test Your Reactions!!!</h1>
+        
+        <p>
+        
+            Click on the boxes and circles as quickly as you can.
+        
+        </p>
+        
+        <p>Your time : <span id="puttime"></span></p>
+        
+        <div id="origin"></div>
+    
+        <script>
+            
+            //start is put when the page loads so as to calculate the time for the first time
+            
+            var start = new Date().getTime();
+            
+            var divType = ["circle", "square"]
+        
+            
+            //To make the square appear 
+            function makeDivAppear(y) {
+                
+                var color = ["red", "blue", "yellow", "green", "cyan", "black", "pink", "chartreuse", "blueviolet", "gold", "rebeccapurple",                    "fuchsia", "darkorange", "darkmagenta"];
+                
+                
+                var top = [60 ,100 ,340 ,200, 240, 300, 90];
+                
+                var left = [300 , 85, 750, 600, 250, 450, 190];
+                
+                var width = [260 ,150 ,500 ,200, 240, 300, 190];
+                
+                var rand_color = Math.floor((Math.random()*color.length));
+                
+                console.log(color[rand_color]);
+                
+                var rand_top = Math.floor((Math.random()*top.length));
+                
+                var rand_left = Math.floor((Math.random()*top.length));
+                
+                var rand_width = Math.floor((Math.random()*top.length));
+                
+                var changindDiv = document.getElementById("origin");
+                
+                if(y == "square"){
+                    
+                    changindDiv.style.top = top[rand_top] + "px";
+                
+                    changindDiv.style.left = left[rand_left] + "px";
+                
+                    changindDiv.style.width = width[rand_width] + "px";
+                
+                    changindDiv.style.height = width[rand_width] + "px";
+                
+                    changindDiv.style.backgroundColor = color[rand_color];
+                    
+                    changindDiv.style.borderRadius = "0%";
+                
+                    changindDiv.style.display = "block";
+                
+                }
+                else{
+                    
+                    changindDiv.style.top = top[rand_top] + "px";
+                
+                    changindDiv.style.left = left[rand_left] + "px";
+                
+                    changindDiv.style.width = width[rand_width] + "px";
+                
+                    changindDiv.style.height = width[rand_width] + "px";
+                
+                    changindDiv.style.backgroundColor = color[rand_color];
+                    
+                    changindDiv.style.borderRadius = "50%";
+                    
+                    changindDiv.style.display = "block";
+                    
+                }
+                
+                
+                
+                start = (new Date()).getTime();
+                
+            }
+            
+            
+            //Set the delay and then call the makeDivAppear method.
+            
+            function delay(x){
+                setTimeout(makeDivAppear(x), Math.floor((Math.random() * 1000) + 150));
+            }
+            
+            //To make it appear the first time
+            
+            delay("square");
+            
+            document.getElementById("origin").onclick = function() {
+                
+                var shape = "";
+                
+                var box = document.getElementById("origin");
+                
+                box.style.display = "none";
+                
+                var end = new Date().getTime();
+                
+                var dif = (end - start)/1000;
+                
+                //alert(dif);
+                
+                document.getElementById("puttime").innerHTML = dif + " s";
+                
+                //setTimeout(functiontocreatenewdivs(), milliseconds);
+                
+                var shapeSelector = Math.floor(Math.random() * 2);
+                
+                shape = divType[shapeSelector];
+                
+                console.log(shape);
+                
+                delay(shape);
+                
+            }
+        
+        </script>
+    
+    </body>
+
+
+
+
+
+
+
+</html>
